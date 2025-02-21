@@ -1,0 +1,65 @@
+{
+  "name": "@alarife/gateway",
+  "version": "0.1.0",
+  "description": "Library to generate Gateway for REST API with a decorator pattern based on the Alarife project.",
+  "author": "Jose Eduardo Soria Garcia <pepesoriagarcia99@gmail.com>",
+  "license": "ISC",
+  "files": [
+    "lib/*"
+  ],
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.js"
+    }
+  },
+  "scripts": {
+    "build": "rm -r ./lib && babel source --out-dir lib && ncp ./source/static ./lib/static",
+    "lint": "eslint src",
+    "npm:publish": "npm run build && npm publish --access public",
+    "npm:link": "babel source --out-dir lib && npm link @alarife/gateway",
+    "test:app": "nodemon --exec babel-node ./test/app/index.js --debug NODE_ENV=development",
+    "test:unit": "mocha --recursive test/unit --require @babel/register --exit"
+  },
+  "keywords": [
+    "backend",
+    "alarife",
+    "gateway"
+  ],
+  "devDependencies": {
+    "@babel/cli": "~7.23",
+    "@babel/core": "~7.23",
+    "@babel/eslint-parser": "~7.22",
+    "@babel/node": "~7.22",
+    "@babel/plugin-proposal-decorators": "7.23.2",
+    "@babel/plugin-transform-runtime": "~7.23",
+    "@babel/preset-env": "~7.23",
+    "chai": "~4.3.10",
+    "eslint": "~8.26",
+    "eslint-config-prettier": "~8.8",
+    "lint-staged": "~13.2",
+    "mocha": "~10.2.0",
+    "ncp": "~2.0",
+    "nodemon": "~2.0",
+    "prettier": "~2.7"
+  },
+  "dependencies": {
+    "@alarife/core": "1.4.0",
+    "express": "~4.18",
+    "morgan": "~1.10"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "npm run lint",
+      "git add"
+    ]
+  },
+  "engines": {
+    "npm": "10.1",
+    "node": "20.9"
+  }
+}

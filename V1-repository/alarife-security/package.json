@@ -1,0 +1,63 @@
+{
+  "name": "@alarife/security",
+  "version": "0.1.0",
+  "description": "Complement to secure applications integrated with the alarife project.",
+  "files": [
+    "lib/*"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel source --out-dir lib",
+    "lint": "eslint src",
+    "npm:publish": "npm run build && npm publish --access public",
+    "npm:link": "babel source --out-dir lib && npm link @alarife/security",
+    "test:app": "nodemon --exec babel-node ./test/app/index.js"
+  },
+  "keywords": [
+    "express",
+    "backend",
+    "alarife",
+    "secure",
+    "JWT",
+    "passport",
+    "jsonwebtoken"
+  ],
+  "author": "Jose Eduardo Soria Garcia <pepesoriagarcia99@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "~7.23",
+    "@babel/core": "~7.23",
+    "@babel/eslint-parser": "~7.22",
+    "@babel/node": "~7.22",
+    "@babel/plugin-proposal-decorators": "7.23.2",
+    "@babel/plugin-transform-runtime": "~7.23",
+    "@babel/preset-env": "~7.23",
+    "eslint": "~8.26",
+    "eslint-config-prettier": "~8.8",
+    "lint-staged": "~13.2",
+    "ncp": "~2.0",
+    "nodemon": "~2.0",
+    "prettier": "~2.7"
+  },
+  "dependencies": {
+    "bcrypt": "~5.1.1",
+    "jsonwebtoken": "~9.0.2",
+    "passport": "~0.6.0",
+    "passport-http": "~0.3.0",
+    "passport-http-bearer": "~1.0.1",
+    "passport-jwt": "~4.0.1"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "npm run lint",
+      "git add"
+    ]
+  },
+  "engines": {
+    "npm": "10.1",
+    "node": "20.8"
+  }
+}

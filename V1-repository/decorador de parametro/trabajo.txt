@@ -1,0 +1,1 @@
+Copiar el codigo al core, mantenerlo adaptado a las ultimas versiones de los decoradores

@@ -1,0 +1,21 @@
+"use strict";var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports, "__esModule", { value: true });exports.Logger = void 0;var _DeveloperError = _interopRequireDefault(require("../modules/DeveloperError.js"));
+var _utils = require("../utils.js");
+
+var _Logger = _interopRequireDefault(require("../modules/Logger.js"));
+
+/**
+ * TODO: Configuracion de que trazas aplican a este Logger en concreto.
+ */
+/**
+  ** Logger decorator
+  * @returns {function} The decorator function
+*/
+const Logger = () => (Target, { kind }) => {
+  if (kind !== 'class') {
+    throw new _DeveloperError.default('The Logger decorator can only be applied to classes.');
+  }
+
+  const logService = new _Logger.default(Target.name);
+  (0, _utils.defineProperty)(Target.prototype, 'log', logService.methods);
+};exports.Logger = Logger;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJfRGV2ZWxvcGVyRXJyb3IiLCJfaW50ZXJvcFJlcXVpcmVEZWZhdWx0IiwicmVxdWlyZSIsIl91dGlscyIsIl9Mb2dnZXIiLCJMb2dnZXIiLCJUYXJnZXQiLCJraW5kIiwiRGV2ZWxvcGVyRXJyb3IiLCJsb2dTZXJ2aWNlIiwiTG9nZ2VyTW9kdWxlIiwibmFtZSIsImRlZmluZVByb3BlcnR5IiwicHJvdG90eXBlIiwibWV0aG9kcyIsImV4cG9ydHMiXSwic291cmNlcyI6WyIuLi8uLi9zb3VyY2UvZGVjb3JhdG9ycy9Mb2dnZXIuanMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IERldmVsb3BlckVycm9yIGZyb20gJy4uL21vZHVsZXMvRGV2ZWxvcGVyRXJyb3IuanMnO1xyXG5pbXBvcnQgeyBkZWZpbmVQcm9wZXJ0eSB9IGZyb20gJy4uL3V0aWxzLmpzJztcclxuXHJcbmltcG9ydCB7IGRlZmF1bHQgYXMgTG9nZ2VyTW9kdWxlIH0gZnJvbSAnLi4vbW9kdWxlcy9Mb2dnZXIuanMnO1xyXG5cclxuLyoqXHJcbiAqIFRPRE86IENvbmZpZ3VyYWNpb24gZGUgcXVlIHRyYXphcyBhcGxpY2FuIGEgZXN0ZSBMb2dnZXIgZW4gY29uY3JldG8uXHJcbiAqL1xyXG4vKipcclxuICAqKiBMb2dnZXIgZGVjb3JhdG9yXHJcbiAgKiBAcmV0dXJucyB7ZnVuY3Rpb259IFRoZSBkZWNvcmF0b3IgZnVuY3Rpb25cclxuKi9cclxuZXhwb3J0IGNvbnN0IExvZ2dlciA9ICgpID0+IChUYXJnZXQsIHsga2luZCB9KSA9PiB7XHJcbiAgaWYgKGtpbmQgIT09ICdjbGFzcycpIHtcclxuICAgIHRocm93IG5ldyBEZXZlbG9wZXJFcnJvcignVGhlIExvZ2dlciBkZWNvcmF0b3IgY2FuIG9ubHkgYmUgYXBwbGllZCB0byBjbGFzc2VzLicpO1xyXG4gIH1cclxuXHJcbiAgY29uc3QgbG9nU2VydmljZSA9IG5ldyBMb2dnZXJNb2R1bGUoVGFyZ2V0Lm5hbWUpO1xyXG4gIGRlZmluZVByb3BlcnR5KFRhcmdldC5wcm90b3R5cGUsICdsb2cnLCBsb2dTZXJ2aWNlLm1ldGhvZHMpO1xyXG59O1xyXG4iXSwibWFwcGluZ3MiOiJ3TEFBQSxJQUFBQSxlQUFBLEdBQUFDLHNCQUFBLENBQUFDLE9BQUE7QUFDQSxJQUFBQyxNQUFBLEdBQUFELE9BQUE7O0FBRUEsSUFBQUUsT0FBQSxHQUFBSCxzQkFBQSxDQUFBQyxPQUFBOztBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ08sTUFBTUcsTUFBTSxHQUFHQSxDQUFBLEtBQU0sQ0FBQ0MsTUFBTSxFQUFFLEVBQUVDLElBQUksQ0FBQyxDQUFDLEtBQUs7RUFDaEQsSUFBSUEsSUFBSSxLQUFLLE9BQU8sRUFBRTtJQUNwQixNQUFNLElBQUlDLHVCQUFjLENBQUMsc0RBQXNELENBQUM7RUFDbEY7O0VBRUEsTUFBTUMsVUFBVSxHQUFHLElBQUlDLGVBQVksQ0FBQ0osTUFBTSxDQUFDSyxJQUFJLENBQUM7RUFDaEQsSUFBQUMscUJBQWMsRUFBQ04sTUFBTSxDQUFDTyxTQUFTLEVBQUUsS0FBSyxFQUFFSixVQUFVLENBQUNLLE9BQU8sQ0FBQztBQUM3RCxDQUFDLENBQUNDLE9BQUEsQ0FBQVYsTUFBQSxHQUFBQSxNQUFBIn0=

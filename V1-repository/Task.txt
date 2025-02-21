@@ -1,0 +1,82 @@
+- Actualizar version de decoradores
+- Crear arquitectura base en Core para la parte del launcher y datos de entorno.
+- Migrar desarrollo de LOG a alarife-logging (aqui se añadira el soporte a plataformas. Los decoradores no tendran soporte base a LOG se necesitara el @Log(). ).
+
+- Revisar posible uso de symbol
+- Revisar posible uso de https://developer.mozilla.org/es/docs/WebAssembly
+- Revisar posible uso de NODE.JS 21.7.0, styleText
+
+
+POSIBLE USO DE VARIABLES NO SERIALIZABLES ENTRE HILOS EN JS:
+- Generar una instancia en el hilo principal
+- Marcarla, quizas con webassebly
+- generar un worker, que uso otro modulo de webassembly que rescate eso de memoria
+- Usar esta instancia en el worker
+
+EJECUCION PARALETA
+- clase Task que se pondra como extend a tu clase, el super() sera usado para los valores enviados
+- tu clase tendra un metodo run, que sera el lanzador
+- tendremos una queue, una especie de pool que gestionara las tareas lanzadas
+
+--------------------------------------------------
+#include <stdint.h>
+
+// Definir una función para escribir un valor en la memoria
+void set_value_in_memory(int32_t* ptr, int32_t value) {
+    *ptr = value;
+}
+
+// Definir una función para leer un valor de la memoria
+int32_t get_value_from_memory(int32_t* ptr) {
+    return *ptr;
+}
+--------------------------------------------------
+emcc example.c -o example.wasm -s WASM=1
+--------------------------------------------------
+// Cargar el módulo de WebAssembly
+fetch('example.wasm')
+  .then(response => response.arrayBuffer())
+  .then(bytes => WebAssembly.instantiate(bytes))
+  .then(obj => {
+    const instance = obj.instance;
+
+    // Obtener el puntero a la memoria lineal
+    const memory = new Int32Array(instance.exports.memory.buffer);
+
+    // Definir un índice en la memoria donde se almacenará el valor
+    const index = 0;
+
+    // Escribir un valor en la memoria
+    const valueToSet = 42;
+    instance.exports.set_value_in_memory(index, valueToSet);
+
+    // Leer el valor de la memoria
+    const retrievedValue = instance.exports.get_value_from_memory(index);
+    console.log("Valor recuperado de la memoria:", retrievedValue);
+  });
+--------------------------------------------------
+
+
+SERIALIZACION Y DESERIALIZACION
+Java tiene una serie de marcadores para la serializacion y deserializacion
+Cuando no es deserializable se marcan las partes que no lo son para añadirlas en el siguiente hilo de ser accesibles
+
+
+--------------------------------------------------
+
+USAR FUNCIONES GENERADORAS
+
+function* generador() {
+	yield 1
+	yield 2
+	yield 3
+}
+
+generador().next().value
+generador().next().value
+generador().next().value
+
+
+--------------------------------------------------
+Posible intracion de base de datos https://www.npmjs.com/package/nedb
+--------------------------------------------------

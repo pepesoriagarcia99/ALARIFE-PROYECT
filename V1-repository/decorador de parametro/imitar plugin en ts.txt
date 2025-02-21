@@ -1,0 +1,79 @@
+En TypeScript, puedes implementar la funcionalidad de decoradores para parámetros sin necesidad de un plugin como babel-plugin-parameter-decorator, ya que TypeScript tiene soporte nativo para decoradores. Sin embargo, necesitas habilitar experimentalDecorators en el archivo tsconfig.json.
+
+Aquí tienes cómo podrías imitar el comportamiento del paquete en TypeScript:
+
+Pasos para implementar decoradores de parámetros en TypeScript
+Configurar el archivo tsconfig.json
+Asegúrate de habilitar la opción experimentalDecorators en tu archivo tsconfig.json:
+
+json
+Copiar
+Editar
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true // Opcional, útil si necesitas metadatos de tipos.
+  }
+}
+Crear un decorador para parámetros
+Los decoradores para parámetros reciben tres argumentos:
+
+target: El prototipo de la clase o el constructor.
+propertyKey: El nombre del método al que pertenece el parámetro.
+parameterIndex: La posición del parámetro dentro del método.
+Aquí hay un ejemplo de un decorador de parámetro:
+
+typescript
+Copiar
+Editar
+function LogParameter(target: Object, propertyKey: string | symbol, parameterIndex: number) {
+  const existingParameters = Reflect.getOwnMetadata("log_parameters", target, propertyKey) || [];
+  existingParameters.push(parameterIndex);
+  Reflect.defineMetadata("log_parameters", existingParameters, target, propertyKey);
+}
+Aplicar el decorador en una clase
+Usa el decorador en un parámetro de un método. Aquí, el decorador almacenará información sobre qué parámetros fueron decorados:
+
+typescript
+Copiar
+Editar
+class MyClass {
+  myMethod(@LogParameter param1: string, param2: number) {
+    console.log(`Executing myMethod with param1: ${param1}, param2: ${param2}`);
+  }
+}
+
+const myInstance = new MyClass();
+myInstance.myMethod("Hello", 42);
+Leer y usar los metadatos
+Si deseas procesar o usar los decoradores en tiempo de ejecución, puedes recuperar los metadatos con Reflect:
+
+typescript
+Copiar
+Editar
+import "reflect-metadata";
+
+const methodParameters = Reflect.getOwnMetadata("log_parameters", MyClass.prototype, "myMethod");
+console.log("Decorated parameters at indices:", methodParameters);
+Resultado esperado
+Cuando llamas al método myMethod, el decorador almacena información sobre los parámetros decorados y puedes acceder a ella posteriormente usando Reflect.
+
+Explicación
+Reflect y metadatos: El paquete reflect-metadata es necesario para trabajar con decoradores avanzados. Lo puedes instalar con:
+
+bash
+Copiar
+Editar
+npm install reflect-metadata
+Uso de los índices de parámetros: El índice (parameterIndex) te permite identificar qué parámetro fue decorado.
+
+Definición y recuperación de metadatos: Reflect.defineMetadata y Reflect.getOwnMetadata te permiten almacenar y recuperar información adicional sobre decoradores.
+
+¿Te gustaría un ejemplo más complejo o ayuda con algún caso específico? 😊
+
+
+
+
+
+
+

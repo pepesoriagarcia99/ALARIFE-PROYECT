@@ -1,0 +1,46 @@
+"use strict";var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports, "__esModule", { value: true });exports.default = exports.Service = exports.AutoWired = void 0;var _InstanceStore = _interopRequireDefault(require("../modules/InstanceStore.js"));
+
+var _Logger = _interopRequireDefault(require("../modules/Logger.js"));
+var _DeveloperError = _interopRequireDefault(require("../modules/DeveloperError.js"));
+
+var _utils = require("../utils.js");
+
+/**
+  ** Service decorator
+  * @returns {function} The decorator function
+*/
+const Service = () => (Target, { kind }) => {
+  if (kind !== 'class') {
+    throw new _DeveloperError.default('The Service decorator can only be applied to classes.');
+  }
+
+  const logService = new _Logger.default(Target.name);
+  (0, _utils.defineProperty)(Target.prototype, 'log', logService.methods);
+
+  _InstanceStore.default.set(Target.name, new Target());
+};
+
+/**
+ * TODO: Posibles opciones
+ * ? { new: true } --> Genere una nueva instancia en la inyección.
+ * ? paramereters: --> posibles parametros a la inyección del servicio, Esto obliga a que sea una nueva instancia.
+ */
+/**
+  ** AutoWired decorator
+  * @param {Function} Target Class reference
+  * @returns {Function} Initialize function
+*/exports.Service = Service;
+const AutoWired = (Target) => (field, { kind }) => {
+  if (kind !== 'field') {
+    throw new _DeveloperError.default('The AutoWired decorator can only be applied to field.');
+  }
+
+  if (!Target) {
+    throw new _DeveloperError.default('Target service class is a required value.');
+  }
+
+  return () => _InstanceStore.default.get(Target.name);
+};exports.AutoWired = AutoWired;var _default = exports.default =
+
+Service;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJfSW5zdGFuY2VTdG9yZSIsIl9pbnRlcm9wUmVxdWlyZURlZmF1bHQiLCJyZXF1aXJlIiwiX0xvZ2dlciIsIl9EZXZlbG9wZXJFcnJvciIsIl91dGlscyIsIlNlcnZpY2UiLCJUYXJnZXQiLCJraW5kIiwiRGV2ZWxvcGVyRXJyb3IiLCJsb2dTZXJ2aWNlIiwiTG9nZ2VyIiwibmFtZSIsImRlZmluZVByb3BlcnR5IiwicHJvdG90eXBlIiwibWV0aG9kcyIsImluc3RhbmNlU3RvcmUiLCJzZXQiLCJleHBvcnRzIiwiQXV0b1dpcmVkIiwiZmllbGQiLCJnZXQiLCJfZGVmYXVsdCIsImRlZmF1bHQiXSwic291cmNlcyI6WyIuLi8uLi9zb3VyY2UvZGVjb3JhdG9ycy9TZXJ2aWNlLmpzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBpbnN0YW5jZVN0b3JlIGZyb20gJy4uL21vZHVsZXMvSW5zdGFuY2VTdG9yZS5qcyc7XHJcblxyXG5pbXBvcnQgTG9nZ2VyIGZyb20gJy4uL21vZHVsZXMvTG9nZ2VyLmpzJztcclxuaW1wb3J0IERldmVsb3BlckVycm9yIGZyb20gJy4uL21vZHVsZXMvRGV2ZWxvcGVyRXJyb3IuanMnO1xyXG5cclxuaW1wb3J0IHsgZGVmaW5lUHJvcGVydHkgfSBmcm9tICcuLi91dGlscy5qcyc7XHJcblxyXG4vKipcclxuICAqKiBTZXJ2aWNlIGRlY29yYXRvclxyXG4gICogQHJldHVybnMge2Z1bmN0aW9ufSBUaGUgZGVjb3JhdG9yIGZ1bmN0aW9uXHJcbiovXHJcbmV4cG9ydCBjb25zdCBTZXJ2aWNlID0gKCkgPT4gKFRhcmdldCwgeyBraW5kIH0pID0+IHtcclxuICBpZiAoa2luZCAhPT0gJ2NsYXNzJykge1xyXG4gICAgdGhyb3cgbmV3IERldmVsb3BlckVycm9yKCdUaGUgU2VydmljZSBkZWNvcmF0b3IgY2FuIG9ubHkgYmUgYXBwbGllZCB0byBjbGFzc2VzLicpO1xyXG4gIH1cclxuXHJcbiAgY29uc3QgbG9nU2VydmljZSA9IG5ldyBMb2dnZXIoVGFyZ2V0Lm5hbWUpO1xyXG4gIGRlZmluZVByb3BlcnR5KFRhcmdldC5wcm90b3R5cGUsICdsb2cnLCBsb2dTZXJ2aWNlLm1ldGhvZHMpO1xyXG5cclxuICBpbnN0YW5jZVN0b3JlLnNldChUYXJnZXQubmFtZSwgbmV3IFRhcmdldCgpKTtcclxufTtcclxuXHJcbi8qKlxyXG4gKiBUT0RPOiBQb3NpYmxlcyBvcGNpb25lc1xyXG4gKiA/IHsgbmV3OiB0cnVlIH0gLS0+IEdlbmVyZSB1bmEgbnVldmEgaW5zdGFuY2lhIGVuIGxhIGlueWVjY2nDs24uXHJcbiAqID8gcGFyYW1lcmV0ZXJzOiAtLT4gcG9zaWJsZXMgcGFyYW1ldHJvcyBhIGxhIGlueWVjY2nDs24gZGVsIHNlcnZpY2lvLCBFc3RvIG9ibGlnYSBhIHF1ZSBzZWEgdW5hIG51ZXZhIGluc3RhbmNpYS5cclxuICovXHJcbi8qKlxyXG4gICoqIEF1dG9XaXJlZCBkZWNvcmF0b3JcclxuICAqIEBwYXJhbSB7RnVuY3Rpb259IFRhcmdldCBDbGFzcyByZWZlcmVuY2VcclxuICAqIEByZXR1cm5zIHtGdW5jdGlvbn0gSW5pdGlhbGl6ZSBmdW5jdGlvblxyXG4qL1xyXG5leHBvcnQgY29uc3QgQXV0b1dpcmVkID0gVGFyZ2V0ID0+IChmaWVsZCwgeyBraW5kIH0pID0+IHtcclxuICBpZiAoa2luZCAhPT0gJ2ZpZWxkJykge1xyXG4gICAgdGhyb3cgbmV3IERldmVsb3BlckVycm9yKCdUaGUgQXV0b1dpcmVkIGRlY29yYXRvciBjYW4gb25seSBiZSBhcHBsaWVkIHRvIGZpZWxkLicpO1xyXG4gIH1cclxuXHJcbiAgaWYgKCFUYXJnZXQpIHtcclxuICAgIHRocm93IG5ldyBEZXZlbG9wZXJFcnJvcignVGFyZ2V0IHNlcnZpY2UgY2xhc3MgaXMgYSByZXF1aXJlZCB2YWx1ZS4nKTtcclxuICB9XHJcblxyXG4gIHJldHVybiAoKSA9PiBpbnN0YW5jZVN0b3JlLmdldChUYXJnZXQubmFtZSk7XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBTZXJ2aWNlO1xyXG4iXSwibWFwcGluZ3MiOiIrTkFBQSxJQUFBQSxjQUFBLEdBQUFDLHNCQUFBLENBQUFDLE9BQUE7O0FBRUEsSUFBQUMsT0FBQSxHQUFBRixzQkFBQSxDQUFBQyxPQUFBO0FBQ0EsSUFBQUUsZUFBQSxHQUFBSCxzQkFBQSxDQUFBQyxPQUFBOztBQUVBLElBQUFHLE1BQUEsR0FBQUgsT0FBQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNPLE1BQU1JLE9BQU8sR0FBR0EsQ0FBQSxLQUFNLENBQUNDLE1BQU0sRUFBRSxFQUFFQyxJQUFJLENBQUMsQ0FBQyxLQUFLO0VBQ2pELElBQUlBLElBQUksS0FBSyxPQUFPLEVBQUU7SUFDcEIsTUFBTSxJQUFJQyx1QkFBYyxDQUFDLHVEQUF1RCxDQUFDO0VBQ25GOztFQUVBLE1BQU1DLFVBQVUsR0FBRyxJQUFJQyxlQUFNLENBQUNKLE1BQU0sQ0FBQ0ssSUFBSSxDQUFDO0VBQzFDLElBQUFDLHFCQUFjLEVBQUNOLE1BQU0sQ0FBQ08sU0FBUyxFQUFFLEtBQUssRUFBRUosVUFBVSxDQUFDSyxPQUFPLENBQUM7O0VBRTNEQyxzQkFBYSxDQUFDQyxHQUFHLENBQUNWLE1BQU0sQ0FBQ0ssSUFBSSxFQUFFLElBQUlMLE1BQU0sQ0FBQyxDQUFDLENBQUM7QUFDOUMsQ0FBQzs7QUFFRDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxFQUpBVyxPQUFBLENBQUFaLE9BQUEsR0FBQUEsT0FBQTtBQUtPLE1BQU1hLFNBQVMsR0FBR0EsQ0FBQVosTUFBTSxLQUFJLENBQUNhLEtBQUssRUFBRSxFQUFFWixJQUFJLENBQUMsQ0FBQyxLQUFLO0VBQ3RELElBQUlBLElBQUksS0FBSyxPQUFPLEVBQUU7SUFDcEIsTUFBTSxJQUFJQyx1QkFBYyxDQUFDLHVEQUF1RCxDQUFDO0VBQ25GOztFQUVBLElBQUksQ0FBQ0YsTUFBTSxFQUFFO0lBQ1gsTUFBTSxJQUFJRSx1QkFBYyxDQUFDLDJDQUEyQyxDQUFDO0VBQ3ZFOztFQUVBLE9BQU8sTUFBTU8sc0JBQWEsQ0FBQ0ssR0FBRyxDQUFDZCxNQUFNLENBQUNLLElBQUksQ0FBQztBQUM3QyxDQUFDLENBQUNNLE9BQUEsQ0FBQUMsU0FBQSxHQUFBQSxTQUFBLEtBQUFHLFFBQUEsR0FBQUosT0FBQSxDQUFBSyxPQUFBOztBQUVhakIsT0FBTyJ9

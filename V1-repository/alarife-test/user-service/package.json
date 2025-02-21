@@ -1,0 +1,14 @@
+{
+  "name": "user-service",
+  "version": "0.1.0",
+  "description": "",
+  "author": "Jose Eduardo Soria Garcia <pepesoriagarcia99@gmail.com>",
+  "scripts": {
+  },
+  "devDependencies": {
+
+  },
+  "dependencies": {
+
+  }
+}

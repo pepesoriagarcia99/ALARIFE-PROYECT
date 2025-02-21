@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });Object.defineProperty(exports, "default", { enumerable: true, get: function () {return _App.App;} });var _App = require("./decorators/App.js");
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJfQXBwIiwicmVxdWlyZSJdLCJzb3VyY2VzIjpbIi4uL3NvdXJjZS9pbmRleC5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgeyBBcHAgYXMgZGVmYXVsdCB9IGZyb20gJy4vZGVjb3JhdG9ycy9BcHAuanMnO1xyXG4iXSwibWFwcGluZ3MiOiJnTEFBQSxJQUFBQSxJQUFBLEdBQUFDLE9BQUEifQ==

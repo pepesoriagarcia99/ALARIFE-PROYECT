@@ -1,0 +1,49 @@
+{
+  "name": "alarife-example",
+  "version": "0.1.0",
+  "description": "alarife library implementation example",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/app.js",
+    "lint": "eslint src",
+    "build": "babel source --out-dir dist"
+  },
+  "keywords": [
+    "framework",
+    "backend",
+    "alarife"
+  ],
+  "author": "Jose Eduardo Soria Garcia <pepesoriagarcia99@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@alarife/http": "0.2.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "~7.23",
+    "@babel/core": "~7.23",
+    "@babel/eslint-parser": "~7.22",
+    "@babel/node": "~7.22",
+    "@babel/plugin-proposal-decorators": "7.23.2",
+    "@babel/plugin-transform-runtime": "~7.23",
+    "@babel/preset-env": "~7.23",
+    "eslint": "~8.26",
+    "eslint-config-prettier": "~8.8",
+    "lint-staged": "~13.2",
+    "ncp": "~2.0",
+    "nodemon": "~2.0",
+    "prettier": "~2.7"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "npm run lint",
+      "git add"
+    ]
+  },
+  "engines": {
+    "npm": "8.19.2",
+    "node": "18.12.1"
+  }
+}

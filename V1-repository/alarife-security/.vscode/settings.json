@@ -1,0 +1,19 @@
+{
+    "eslint.format.enable": true,
+    "eslint.alwaysShowStatus": true,
+    "eslint.codeActionsOnSave.mode": "all",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
+        "source.fixAll.stylelint": "explicit"
+    },
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false,
+    "cSpell.words": [
+        "alarife"
+    ]
+}

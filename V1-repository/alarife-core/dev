@@ -1,0 +1,7 @@
+Instrucciones V2
+- Creacion e itengracion de modulos completos y reutilizables [Launcher, Data, Configuration(reutilizable en librerias), Worker]
+- Nuevo modelo DATA y una coleccion generica para los datos [env, process, CustomValues] --> accesibles desde el decorador @Value
+- Archivos de log solo configurable en ENV-FILE
+- Configraion de tipos desde 0
+- Cuando tengamos esta, revisar tareas de ALARIFE
+- Pasar la libreria a publica para colaboraciones

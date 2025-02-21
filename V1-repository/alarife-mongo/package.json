@@ -1,0 +1,58 @@
+{
+  "name": "@alarife/mongo",
+  "version": "0.1.0",
+  "description": "Plugin for mongo databases integrated with the Alarife project.",
+  "author": "Jose Eduardo Soria Garcia <pepesoriagarcia99@gmail.com>",
+  "license": "ISC",
+  "files": [
+    "lib/*"
+  ],
+  "scripts": {
+    "build": "rm -r ./lib && babel source --out-dir lib",
+    "lint": "eslint src",
+    "npm:publish": "npm run build && npm publish --access public",
+    "npm:link": "babel source --out-dir lib && npm link @alarife/mongo",
+    "test:app": "nodemon --exec babel-node ./test/app/index.js",
+    "test:integration": "mocha --recursive test/integration/api/ --require @babel/register --require test/integration/setup.js --exit"
+  },
+  "keywords": [
+    "backend",
+    "alarife",
+    "mongoose"
+  ],
+  "devDependencies": {
+    "@babel/cli": "~7.23",
+    "@babel/core": "~7.23",
+    "@babel/eslint-parser": "~7.22",
+    "@babel/node": "~7.22",
+    "@babel/plugin-proposal-decorators": "7.23.2",
+    "@babel/plugin-transform-runtime": "~7.23",
+    "@babel/preset-env": "~7.23",
+    "eslint": "~8.26",
+    "eslint-config-prettier": "~8.8",
+    "lint-staged": "~13.2",
+    "nodemon": "~2.0",
+    "prettier": "~2.7",
+    "mocha": "~10.2.0",
+    "chai": "~4.3.10"
+  },
+  "dependencies": {
+    "@alarife/core": "1.4.0",
+    "bluebird": "^3.7.2",
+    "mongoose": "~7.0",
+    "mongoose-keywords": "~0.4"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "npm run lint",
+      "git add"
+    ]
+  },
+  "engines": {
+    "npm": "10.1",
+    "node": "20.9"
+  }
+}
