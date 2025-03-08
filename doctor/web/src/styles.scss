@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./assets/styles/panel.scss";
+@import "./assets/styles/button.scss";
+@import "./assets/styles/icon.scss";
+@import "./assets/styles/header.scss";
+@import "./assets/styles/variables.scss";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: $primary-light-3;
+  margin: 0;
+  font-family: $default-font;
+  font-weight: 400;
+}
+
+// Loader
+.loader {
+  @extend .backdrop;
+
+  z-index: 100000 !important;
+
+  &::before {
+    margin: auto;
+    align-self: center;
+
+    @extend .spinner;
+    border-width: 12px !important;
+
+    content: "";
+    display: block;
+
+    width: 12rem;
+    height: 12rem;
+  }
+}
+
+// Spinner
+.spinner {
+  border: 4px solid rgba($color: $white, $alpha: 0.9);
+  border-radius: 50%;
+  border-left-color: $primary-light-1;
+
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Form fields
+.mdc-notched-outline__notch {
+  border-right: none !important;
+}
+
+.vertical-separator {
+  border-left: 1px solid $gray-dark-1;
+  height: 90%;
+  margin-top: 2px;
+}

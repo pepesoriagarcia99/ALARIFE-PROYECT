@@ -1,0 +1,10 @@
+<main>
+  <nt-alert></nt-alert>
+  <nt-navbar></nt-navbar>
+  
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
+
+  <div class="loader" *ngIf="loadingService.getLoading() | async"></div>
+</main>

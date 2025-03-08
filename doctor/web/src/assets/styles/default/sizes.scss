@@ -1,0 +1,9 @@
+$button-border-radius: 16px;
+
+$navbar-height: 65px;
+$actions-height: 50px;
+$menu-width: 75px;
+
+$height-main-area: calc(100vh - $navbar-height);
+$width-main-area: calc(100vw - $menu-width);
+$height-table-area: calc(100vh - $navbar-height - $actions-height);

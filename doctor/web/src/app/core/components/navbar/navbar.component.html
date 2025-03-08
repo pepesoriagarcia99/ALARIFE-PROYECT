@@ -1,0 +1,36 @@
+<nav class="navbar">
+  <div class="branding cursor-pointer">
+    <img src="assets/images/logo.svg" [routerLink]="['/']"/>
+  </div>
+
+  <div class="toolbar">
+    <mat-icon
+      class="xl"
+      aria-hidden="false"
+      aria-label="settings icon"
+      fontIcon="settings"
+      [matMenuTriggerFor]="settingsMenu"
+    ></mat-icon>
+
+    @if(areaName) {
+    <span class="separator"></span>
+
+    <div class="areaName">
+      <span>{{ areaName }}</span>
+    </div>
+    }
+
+    <mat-menu #settingsMenu="matMenu">
+      <ng-template matMenuContent let-item="item">
+        <div class="level1">
+          <!-- <button class="" mat-menu-item [routerLink]="['/orders']">
+            <mat-icon>home</mat-icon>Inicio
+          </button> -->
+          <!-- <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>Salir
+          </button> -->
+        </div>
+      </ng-template>
+    </mat-menu>
+  </div>
+</nav>

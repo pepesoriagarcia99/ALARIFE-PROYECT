@@ -1,0 +1,21 @@
+{
+  "name": "doctor-test",
+  "version": "0.1.0",
+  "author": "Jose Eduardo",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc && npm link doctor-cli",
+    "start": "doctor dist/index.js --dev -p",
+    "dev": "concurrently \"npx tsc --watch\" \"node dist/index.js \""
+  },
+  "dependencies": {
+    "tslib": "~2.3",
+    "zone.js": "~0.14"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "concurrently": "~8",
+    "typescript": "~5.4.2"
+  }
+}

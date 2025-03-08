@@ -1,0 +1,12 @@
+<div class="grid grid-cols-2 gap-4">
+
+    <app-cpu-chart #cpuChart></app-cpu-chart>
+
+    <app-memory-chart></app-memory-chart>
+
+    <!-- @for (chart of chartsData; track $index) {
+        <div [ngClass]="{'col-span-2': chart.full}">    
+            <chart-card #chart [data]="chart"></chart-card>
+        </div>
+    } -->
+</div>

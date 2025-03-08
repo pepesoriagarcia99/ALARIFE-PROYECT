@@ -1,0 +1,12 @@
+@import "../../../../assets/styles/variables.scss";
+
+.content {
+  display: flex;
+  flex-direction: row;
+  background-color: $gray-light-6;
+  border-radius: 6px;
+
+  border-width: 2px;
+  border-style: solid;
+  border-color: $primary;
+}

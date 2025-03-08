@@ -1,0 +1,23 @@
+@import "../../../assets/styles/variables.scss";
+
+.app-home {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100%;
+
+    // home-menu {
+    //     flex: 0 0 auto;
+    //     width: $menu-width;
+    //     background: $primary-dark-1;
+    //     display: flex;
+    //     flex-direction: column;
+    //     height: 100%;
+    // }
+
+    section.content {
+        height: 100%;
+        width: 100%;
+    }
+}

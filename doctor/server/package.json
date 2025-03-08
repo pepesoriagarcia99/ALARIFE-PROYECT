@@ -1,0 +1,38 @@
+{
+  "name": "doctor-server",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "npx tsc",
+    "build:bundle": "npx tsc && node esBuild.js && copyfiles package.json bundle/ && npm run copy-web",
+    "build:addon": "npx node-gyp configure build",
+    "start": "node dist/index.js env=production port=8081",
+    "start:bundle": "node bundle/index.js env=production",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js env=development \"",
+    "package:win": "npm run build && pkg ./dist/index.js -t node18-win-x64 --out-path ./dist",
+    "copy-web": "node copy.js ../web/dist ./bundle/"
+  },
+  "author": "Jose Eduardo Soria Garcia <pepesoriagarcia99@gmail.com>",
+  "license": "ISC",
+  "main": "index.js",
+  "devDependencies": {
+    "@types/compression": "~1",
+    "@types/cors": "~2",
+    "@types/express": "~4",
+    "@types/node": "~22",
+    "@types/pidusage": "^2.0.5",
+    "concurrently": "~8",
+    "copyfiles": "~2",
+    "esbuild": "~0",
+    "nodemon": "~3",
+    "typescript": "~5"
+  },
+  "dependencies": {
+    "compression": "~1",
+    "cors": "~2",
+    "express": "~4",
+    "moment": "~2",
+    "node-addon-api": "^8.3.0",
+    "pidusage": "^4.0.0",
+    "socket.io": "~4"
+  }
+}

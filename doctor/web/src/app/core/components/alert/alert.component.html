@@ -1,0 +1,21 @@
+<ng-container>
+  <div class="content">
+    @for (alert of alerts; track $index) {
+    <div
+      class="alert px-4 py-1 shadow-xl"
+      [ngClass]="getMarkedStyle(alert.type)"
+      role="alert"
+    >
+      <div class="flex flex-row items-center gap-2">
+        <mat-icon class="md">{{ alertStyles[alert.type].icon }}</mat-icon>
+
+        <div class="flex-auto">
+          <p class="text-lg" style="margin-top: 0.75rem">{{ alert.message }}</p>
+        </div>
+
+        <mat-icon class="close md" (click)="close($index)">close</mat-icon>
+      </div>
+    </div>
+    }
+  </div>
+</ng-container>

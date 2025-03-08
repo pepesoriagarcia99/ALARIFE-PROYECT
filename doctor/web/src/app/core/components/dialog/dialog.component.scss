@@ -1,0 +1,95 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/button.scss";
+.dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+
+  background-color: rgba($color: $gray-dark-4, $alpha: 0.9);
+  z-index: 998;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  .dialog-panel {
+    margin: auto;
+    background-color: $gray-dark-4;
+    box-shadow: 0px 4px 6px 1px rgba($color: $black, $alpha: 0.25);
+
+    border-radius: 10px;
+
+    min-width: 30rem;
+    min-height: 15rem;
+
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      .title {
+        text-transform: uppercase;
+        color: $white;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 24px;
+      }
+
+      .close {
+        cursor: pointer;
+        color: $white;
+      }
+    }
+
+    .body {
+      display: flex;
+      flex-direction: column;
+
+      background-color: $white;
+      flex-grow: 3;
+
+      height: calc(100% - 160px);
+    }
+
+    .footer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 0 12px;
+      min-height: 66px;
+
+      button:disabled {
+        color: $gray-dark-1;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+    }
+
+    > div:last-child {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+}
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .dialog {
+    background-color: rgba($color: $gray-dark-4, $alpha: 0.76);
+    backdrop-filter: blur(12px);
+  }
+}
+
+//Se ajsuta dialogo en la edicion del rol de acuerdo al tamanio de la pantalla
+// => 'xl': '1280px',
+@media (max-width: 1280px) {
+  .editor-admin {
+    .dialog-panel {
+      top: 70px;
+      position: absolute;
+    }
+  }
+}

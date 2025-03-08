@@ -1,0 +1,12 @@
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    section.content {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        height: 100%;
+    }
+}

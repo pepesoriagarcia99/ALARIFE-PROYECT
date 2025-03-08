@@ -1,0 +1,39 @@
+<ng-container>
+  @if(opened) {
+  <div class="dialog">
+    <div [ngStyle]="{ width: width, height: height }" class="dialog-panel">
+      <div class="header flex flex-row justify-between items-center m-4">
+        <span class="title">{{ dialogTitle }}</span>
+
+        @if(showClose) {
+        <mat-icon class="close md" (click)="onCancel.next(this)">close</mat-icon>
+        }
+      </div>
+      <div class="body">
+        <div #scrollContainer class="h-full overflow-auto">
+          <ng-content></ng-content>
+        </div>
+      </div>
+
+      @if(showFooter) {
+      <div class="footer">
+        @if(acceptButton) {
+        <button
+          mat-raised-button
+          [ngClass]="acceptButtonClass"
+          (click)="onAccept.next(this)"
+          [disabled]="!acceptButtonEnabled"
+        >
+          {{ acceptButton }}
+        </button>
+        } @if(cancelButton) {
+        <button mat-raised-button class="basic" (click)="onCancel.next(this)">
+          {{ cancelButton }}
+        </button>
+        }
+      </div>
+      }
+    </div>
+  </div>
+  }
+</ng-container>

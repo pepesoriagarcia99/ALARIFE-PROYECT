@@ -1,0 +1,32 @@
+@import "../../../../assets/styles/variables.scss";
+
+.content {
+  position: absolute;
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+
+  z-index: 100;
+  left: 0;
+  right: 0;
+
+  animation: 1s ease-in-out 0s 1 slideInFromTop;
+
+  z-index: 999;
+
+  @keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
+
+.alert {
+  .close {
+    cursor: pointer;
+    color: $gray-dark-4;
+  }
+}

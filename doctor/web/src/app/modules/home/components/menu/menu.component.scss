@@ -1,0 +1,11 @@
+@import "../../../../../assets/styles/variables.scss";
+@import "../../../../../assets/styles/menu.scss";
+
+.vertical-menu-bar {
+    .menu-item {
+        &.active,
+        &:hover {
+            background-color: $primary;
+        }
+    }
+}
