@@ -1,0 +1,20 @@
+{
+  "name": "memory-address-addon",
+  "version": "1.0.0",
+  "description": "Addon en C++ para obtener la dirección de memoria de un objeto en JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "configure": "node-gyp configure",
+    "rebuild": "node-gyp rebuild",
+    "build": "node-gyp clean & node-gyp configure & node-gyp build",
+    "start": "node --expose-gc index.js",
+    "clean": "node-gyp clean"
+  },
+  "dependencies": {
+    "node-addon-api": "^7.0.0"
+  },
+  "devDependencies": {
+    "node-gyp": "^9.4.0"
+  },
+  "gypfile": true
+}

@@ -1,0 +1,5 @@
+el lanzador recibira los parametros y lanzara un fork con el script
+
+* Monitorizar datos del server por el pid generado
+* Gestion de configuraciones por .env
+* Gestion de configuraciones por argv

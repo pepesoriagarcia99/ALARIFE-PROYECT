@@ -1,0 +1,2 @@
+Esta libreria adaptara con un patron decorador la libreria de mongosee y NeDB, para tener servidores de bases de datos online y embebidas
+

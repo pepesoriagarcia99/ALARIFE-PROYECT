@@ -1,0 +1,7 @@
+Este servicio se usara para configurar datos entre microservicios.
+
+¡¡ PUEDE FUSIONARSE CON EL DISCOVER !!
+
+Este micorservio dados unos archivo .yml, organizados por entorno y por microservicio, ya sea:
+production.yml --> aplica a todos los microservicios
+user-service.production.yml --> aplica al micro servicio de user-service.

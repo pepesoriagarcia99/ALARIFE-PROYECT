@@ -1,0 +1,41 @@
+Se tienen que buscar una solucion a la creacion de hilos para el sistema.
+
+
+
+    Main -> Escucha todas las peticiones que llegan al HTTP server.
+    |
+    |
+    |\
+    | \
+    |  \
+    |  | Thread 1 -> Peticion /user/:id 
+    |  |
+    |  | <- Inyeccion de instancias de servicios.
+    |  | 
+    |  | <- Resuelve logica
+    |  | 
+    |  | <- Responde 
+    |  | <- Termina el hilo
+    |
+    |  
+    |  
+    |  
+
+
+* Usamos un patron singleton con los decoradores @Controller(), @Service(), @Repository() --> todos nuestros servicios tienen una unica instancia
+
+OPCIONES:
+1.
+Necesito un sistema que sea capaz de compartir instancias entre hilos javascript.
+con c++ o con rust.
+
+1 hilo Main
+2 hilo con instancias
+3 hilo variable generado por cada peticion y se le inyecta la instancia
+
+2.
+Podira tener un hilo donde almacenar todas las instancias de @Controller(), @Service(), @Repository() en un worker separado.
+
+Crear un patron de comunicacion { class: '', method: '' } 
+
+* pero el hilo donde se lance el metodo siempre sera bloqueante y si genero otro hilo que almacene el controller ya no seria singleton.

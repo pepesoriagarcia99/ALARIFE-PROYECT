@@ -1,0 +1,14 @@
+Libreria para la seguridad
+
+Aunque se dejaran funciones puras para comprobar tokens la orientacion sera a Servidores HTTP
+
+Sistema de firmas de token:
+ - App secret para firmar los tokens a nivel APP
+ - User secret firma auto-generada para firmar los tokens propios del usuario
+
+Sistema de black list y control de sesiones:
+ - Se gestionaran todas las sesiones activas.
+ - Se tendra una lista negra de tokens caducados para tener un logout robusto.
+
+* Finget print, en el sistema de sesiones y en el token se almacenara el dispositivo desde el que es creado (evitar suplantaciones).
+* Refresh token, sistema de refresco de token.

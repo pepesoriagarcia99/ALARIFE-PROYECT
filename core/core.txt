@@ -1,0 +1,12 @@
+El core gestionara las instancias principalmente y los datos de inicio, los componentes cloud tendran su propio inicializador
+
+
+@Service --> autowire de lo indicado en el constructor
+
+@Inyect --> sobre los parametros de la clase
+
+@Worker --> el metodo decorado se ejecura en otro hilo y se compoetara como una promesa
+
+*Launcher --> lanzador de la app con todas las configuraciones
+
+Lanzador y configurador tendra que ser dinamico, cada paquete tendra que añadir lo suyo y gestionar lo suyo!!

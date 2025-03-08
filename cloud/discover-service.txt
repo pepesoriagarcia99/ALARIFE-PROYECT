@@ -1,0 +1,8 @@
+Este servicio creara una libreria parecida a eureka en java.
+
+- Tendra que detectar los servios que hay levantados en la arquitectura de microservicios.
+- Tendra que comprobar su estado si se caen o no.
+- A partir de esto crearemos un sistema de comunicacion entre microservicios.
+
+Fase 2:
+- Descubrir las diferentes instancias del mismo microservicios.

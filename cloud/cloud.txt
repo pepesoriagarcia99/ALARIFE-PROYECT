@@ -1,0 +1,6 @@
+Esta libreria configurar las cararteristicas cloud  donde se use su decorador.
+
+Debertas decorar tu micro servicio para que:
+ - Pueda recibir la configuracion del configuration-service.
+ - Pueda ser descubierto por el discover-service.
+ - Pueda ser enlazado por el gateway-service.

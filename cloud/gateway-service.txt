@@ -1,0 +1,5 @@
+Este servicio servira como punto de acceso para toda la arquitectura y redirigira las peticiones a cada uno de los microservicios.
+
+Fase 2:
+ - Balanceo de carga entre los microservicios.
+ - Gestion de instancias aumento de capaciada, tanto vertical (aumento de recursos cpu, ram, gpu) como horizontal (crear nuevas instancias).

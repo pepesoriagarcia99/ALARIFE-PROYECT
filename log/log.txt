@@ -1,0 +1,5 @@
+Sistema de logs:
+
+Se usara Wiston como libreria de referencia para el modelo de log.
+Se generaran los diferentes archivos de logs. (configurable, que tipo  va a cada archivo, combinable).
+Configuracion de envio de logs a grafana.
